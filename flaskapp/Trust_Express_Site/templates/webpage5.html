@@ -1,0 +1,819 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <!-- Google fonts -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text:100,300,400" rel="stylesheet">
+
+<style>
+
+    body{
+        /* color: #FFF; */
+        /* Font color */
+        color: black;
+        /* font-family: sans-serif; */
+        font-family:'Roboto', sans-serif;
+        font-size: 20px;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      /* margin: 40px; */
+      /* Controls how much whtie space is on the left and right of everything */
+      /* margin: 0px 60px 0px; */
+      margin: 0% 10% 0%;
+      /* margin: 0px 5px 0px; */
+    }
+
+    .head{
+        flex-basis: 100%;
+        padding: 20px;
+        /* background: #6E988F; */
+        margin: 10px;
+        /* border: 1px solid black; */
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-right: 100px;
+        margin-left: 100px;
+        position: relative;
+        min-height: 150px;
+
+        /* background: #6E988F; */
+        /* background-image: url("/RavelryDifficultyPredictor/img/knit-pattern-green2.jpg"); */
+        /* background-image: src="/img/knit-pattern-green2.jpg"; */
+        background-image: url("/static/img/knit-pattern-green7.jpg");
+        background-size: cover;
+        /* background-image: url("/static/knit-pattern-green9.jpg"); */
+        /* background-position: bottom; */
+        /* min-width: 100%; */
+        /* height: auto; */
+        background-repeat: no-repeat;
+        background-clip: padding-box;
+    }
+
+    .headcontent{
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        padding: 20px;
+    }
+
+    .mytitle{
+      font-size: 70px;
+      font-weight: 100;
+      color: white;
+    }
+
+    .searchbox{
+      flex-basis: 100%;
+      padding: 20px;
+      background: lightgray;
+      margin: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      margin-right: 100px;
+      margin-left: 100px;
+    }
+
+    .resultshead{
+      width: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+      flex-basis: 100%;
+      /* padding: 20px; */
+      padding: 0px;
+      background: white;
+      /* background: lightblue; */
+      margin: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      margin-right: 100px;
+      margin-left: 140px;
+      position: relative;
+      min-height: 70px;
+    }
+
+    .resultsheadcontent{
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      padding: 0px;
+      font-size: 30px;
+      font-family: 'Crimson Text', serif;
+    }
+
+    .box-container{
+      width: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+      flex-basis: 100%;
+      padding: 20px;
+      background: white;
+      /* margin: 10px; */
+      border: 1px solid lightgray;
+      border-radius: 2px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      margin-right: 100px;
+      margin-left: 100px;
+      position: relative;
+      /* min-height: 150px; */
+    }
+
+    .box-container2{
+      width: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+      flex-basis: 100%;
+      padding: 20px;
+      background: white;
+      /* margin: 10px; */
+      border: none;
+      /* border-radius: 2px; */
+      margin-top: 0px;
+      margin-bottom: 0px;
+      margin-right: 100px;
+      margin-left: 100px;
+      position: relative;
+      /* align-items: center; */
+      justify-content: center;
+      /* min-height: 150px; */
+    }
+
+    .box{
+        /* height:500px; */
+        background-color: white;
+        /* padding: 20px; */
+        margin: 0px 10px 10px 10px;
+        flex-wrap: nowrap;
+    }
+
+    .one{
+      /*  width must add up to 100% with box two width */
+        width: 30%;
+    }
+
+    .two{
+      /*  width must add up to 100% with box one width */
+        width: 70%;
+        padding-left: 15px;
+    }
+
+    .url-label{
+      margin-bottom: 10px;
+      font-family: 'Crimson Text', serif;
+      font-size: 30px;
+    }
+
+    .submit-button{
+      margin-top: 15px;
+      font-size:20px;
+      width: 5em;  height: 5em;
+      background-color: #6E988F;
+      border: none;
+      color: white;
+      padding: 5px 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+      min-width: 10%;
+      height: 45px;
+    }
+
+    .patternImage{
+      max-width: 100%;
+      height: auto;
+    }
+
+    .patternnamediv{
+      font-weight: 400;
+      font-size: 30px;
+    }
+
+    .patternauthordiv{
+      font-style: italic;
+      font-weight: 400;
+      font-size: 15px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+
+    .examplenamediv{
+      font-weight: 400;
+      font-size: 25px;
+      text-align: center;
+    }
+
+    .exampleauthordiv{
+      font-style: italic;
+      font-weight: 400;
+      font-size: 15px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+
+    .button {
+      background-color: white;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .customButton{
+      border: 1px solid lightgray;
+      border-radius: 4px;
+      background-color: white;
+      padding: 20px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+    }
+
+    .customButton:hover{
+      border: 1px solid #6E988F;
+      cursor: -webkit-grab;
+    }
+
+    .body1{
+      margin-top: 20px;
+      font-weight: 400;
+      /* font-size: 20px; */
+      font-size: 22px;
+    }
+
+    .body2{
+      font-weight: 300;
+      font-size: 20px;
+    }
+
+    .body3{
+      margin-top: 0px;
+      font-weight: 400;
+      font-size: 22px;
+    }
+
+
+    .examplepattern{
+      margin-top: 20px;
+      font-weight: 400;
+      /* font-size: 20px; */
+      font-size: 22px;
+    }
+
+
+    ul, menu, dir {
+      display: block;
+      list-style-type: disc;
+      -webkit-margin-before: 1em;
+      -webkit-margin-after: 1em;
+      -webkit-margin-start: 0px;
+      -webkit-margin-end: 0px;
+      /* -webkit-padding-start: 40px; */
+      -webkit-padding-start: 0px;
+    }
+
+    .rating li {
+      float: left;
+      list-style: none;
+      margin: 0px;
+      padding: 0px;
+      width: 13px;
+    }
+
+    .bar_rating li.filled {
+      /* background-color: green; */
+      background-color: #6E988F;
+      border-left-width: 0px;
+      border-right-width: 0px;
+      margin: 0px;
+      padding: 0px;
+      /* padding-left: 1px; */
+      width: 13px;
+    }
+
+    .bar_rating li {
+      background-color: #cccccc;
+      /* padding-top: 2px; */
+      /* padding-left: 1px; */
+      height: 12px;
+      width: 10px;
+      margin: 0px;
+      padding: 0px;
+      /* border-radius: 2px; */
+      width: 13px;
+    }
+
+    input{
+      flex: 1;
+      padding: 5px;
+      font-size: 15px;
+      /* min-width: 95%; */
+      /* min-width: 50%; */
+      /* max-width: 100%; */
+      min-width: 80%;
+      /* max-width: 50%; */
+      margin-right:10px;
+      height: 31px;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 4px;
+      border-color: lightgray;
+    }
+    
+    
+
+    a:link {
+        color: black;
+        background-color: transparent;
+        text-decoration: none;
+    }
+    a:visited {
+        color: black;
+        background-color: transparent;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #6E988F;
+        background-color: transparent;
+        text-decoration: none;
+    }
+    a:active {
+        color: black;
+        background-color: transparent;
+        text-decoration: none;
+    }
+    
+
+
+
+</style>
+
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="head">
+
+          <div class="headcontent">
+
+            <div class="mytitle">
+              TrustExpress
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- <img src="/Users/jamiewilcox/Dropbox/RavelryDifficultyProject/flaskapp/PatternDifficultyPredictor/img/knit-pattern-green2.jpg"> -->
+        <!-- <img src="/static/knit-pattern-green2.jpg"> -->
+
+
+
+        <div class="searchbox">
+
+          <form action="/" method="POST">
+                <!-- <div class="url-label">Enter a Ravelry Pattern URL</div> -->
+                <div class="url-label">
+                  Enter an <a href="https://www.aliexpress.com/" decoration="none">AliExpress</a> Product URL
+                </div>
+
+                <!--<input type="text" name="product_url" value="https://www.ravelry.com/patterns/library/mysteries-she-wrote">
+                <input class="submit-button" type="submit" value="SEARCH"> -->
+
+                <input list="patternurls" value="https://www.aliexpress.com/item/100pcs-bag-10mm-wholesale-silver-Plating-metal-Jump-Rings-Loop-Finding/1082836270.html?ws_ab_test=searchweb0_0,searchweb201602_3_10065_10068_10130_10547_10546_10059_10548_315_10545_10696_100031_5017615_531_10084_10083_10103_451_10618_452_10307_5017715,searchweb201603_55,ppcSwitch_3&algo_expid=89c3c219-2c61-4ec5-a633-13e752a31ec8-41&algo_pvid=89c3c219-2c61-4ec5-a633-13e752a31ec8&transAbTest=ae803_2&priceBeautifyAB=0" name="product_url" required="required">
+                  <datalist id="patternurls">
+                    <option value="https://www.aliexpress.com/item/Free-shipping-30PCS-LOT-pu-mini-tulip-flower-real-touch-wedding-flower-artificial-flower-silk-flower/1116660691.html?ws_ab_test=searchweb0_0,searchweb201602_1_10065_10068_10130_5017611_10547_10546_10059_10548_315_10545_10696_100031_531_10084_10083_10103_451_10618_452_10307_5017711,searchweb201603_45,ppcSwitch_2&algo_expid=7199334f-ad94-4498-8978-f77b38a5e461-19&algo_pvid=7199334f-ad94-4498-8978-f77b38a5e461&transAbTest=ae803_1&priceBeautifyAB=0">
+                    <option value="https://www.aliexpress.com/item/Round-three-row-clear-crystal-Stainless-steel-ring-fashion-jewelry-Made-with-Genuine-CZ-Crystals-Full/1485070290.html?ws_ab_test=searchweb0_0,searchweb201602_1_10065_10068_10130_5017611_10547_10546_10059_10548_315_10545_10696_100031_531_10084_10083_10103_451_10618_452_10307_5017711,searchweb201603_45,ppcSwitch_2&algo_expid=c2ae0289-ddbe-48f0-9500-6ed0fe66fcf4-37&algo_pvid=c2ae0289-ddbe-48f0-9500-6ed0fe66fcf4&transAbTest=ae803_1&priceBeautifyAB=0">
+                    <option value="https://www.aliexpress.com/item/Newest-Arrivals-Multipurpose-Window-Door-Keyboard-Cleaning-Brush-Cleaner-Dustpan-2-In-1-Tool-NEW-Color/32840301637.html?ws_ab_test=searchweb0_0,searchweb201602_4_10065_10068_10130_10547_10546_10059_10884_10548_315_10545_10887_10696_100031_531_10084_10083_10103_451_10618_452_10307,searchweb201603_54,ppcSwitch_5&algo_expid=bc821ff7-d9d4-47c3-8285-22877b125992-5&algo_pvid=bc821ff7-d9d4-47c3-8285-22877b125992&priceBeautifyAB=0">
+                    <option value="https://www.ravelry.com/patterns/library/103-1-silver-haze">
+                    <option value="https://www.ravelry.com/patterns/library/campside-pullover">
+                    <option value="https://www.ravelry.com/patterns/library/cable-mesh-pullover">
+                    <option value="https://www.ravelry.com/patterns/library/print-o-the-wave-stole">
+                    <option value="https://www.ravelry.com/patterns/library/neat-ripple">
+                    <option value="https://www.ravelry.com/patterns/library/echo-flower-shawl">
+                    <option value="https://www.ravelry.com/patterns/library/beginners-garter-stitch-scarf">
+                    <option value="https://www.ravelry.com/patterns/library/betty-salpekar-square">
+                    <option value="https://www.ravelry.com/patterns/library/cable-and-bobble-aran-sweater">
+                    <option value="https://www.ravelry.com/patterns/library/up-north-christmas-stockings">
+                    <option value="https://www.ravelry.com/patterns/library/round-bottom-mesh-market-bag">
+                    <option value="https://www.ravelry.com/patterns/library/square-motif-bag-on-the-bias-">
+                    <option value="https://www.ravelry.com/patterns/library/crochet-peacock-feathers">
+                    <option value="https://www.ravelry.com/patterns/library/pineapple-tablecloth">
+                    <option value="https://www.ravelry.com/patterns/library/lemmy-k">
+                    <option value="https://www.ravelry.com/patterns/library/golden-dreams-scarf">
+                    <option value="https://www.ravelry.com/patterns/library/delft-pillow">
+                    <option value="https://www.ravelry.com/patterns/library/monkey-socks">
+                  </datalist>
+
+                <input class="submit-button" type="submit" value="SEARCH">
+
+          </form>
+
+        </div>
+
+
+
+      <!-- Do this stuff as soon as prediction gets a value. -->
+      {% if main_rating %}
+
+        <!-- If something goes wrong, display an error message. -->
+        {% if main_rating == -5 %}
+
+        <div class="resultshead">
+          <div class="resultsheadcontent">
+
+            Oops! I couldn't find this product, please try another.
+
+          </div>
+        </div>
+
+        <!-- If all is well, display the results. -->
+        {% else %}
+
+        <div class="resultshead">
+          <div class="resultsheadcontent">
+
+            Results:
+
+          </div>
+        </div>
+
+        <div class="box-container">
+          <div class="box one">
+
+            <div class="patternImage">
+              <img src={{ product_photo_url }} alt="pic" >
+            </div>
+
+          </div>
+
+          <div class="box two">
+
+            <div class="patternnamediv">
+                {{ product_name }}
+            </div>
+
+                <!-- <br> -->
+
+            <div class="patternauthordiv">
+                by {{ store_name }}
+            </div>
+            
+            <div class="patternauthordiv">
+                 ${{ price }}
+            </div>
+
+            <div class="body1">
+
+            <ul class="rating bar_rating">
+
+              {% if main_rating|int > 0 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if main_rating|int > 1 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if main_rating|int > 2 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if main_rating|int > 3 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if main_rating|int > 4 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if main_rating|int > 5 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if main_rating|int > 6 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if main_rating|int > 7 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if main_rating|int > 8 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if main_rating|int > 9 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+            </ul>
+
+            </div>
+            <br>
+
+              <div class="body3">
+                Current Rating: {{ main_rating }}/10
+              </div>
+              
+              <div class="body3">
+                Number of reviews: {{ number_reviews }}
+              </div>
+              
+              <div class="body1">
+
+            <ul class="rating bar_rating">
+
+              {% if trusted_rating|int > 0 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if trusted_rating|int > 1 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if trusted_rating|int > 2 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if trusted_rating|int > 3 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if trusted_rating|int > 4 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if trusted_rating|int > 5 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if trusted_rating|int > 6 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if trusted_rating|int > 7 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if trusted_rating|int > 8 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+              {% if trusted_rating|int > 9 %}
+                <li class="filled"></li>
+              {% else %}
+                <li></li>
+              {% endif %}
+
+            </ul>
+
+            </div>
+            <br>
+              
+              <div class="body3">
+                Trusted Review Rating: {{ trusted_rating }}/10
+              </div>
+              
+              <div class="body3">
+                Number of trusted reviews: {{ trusted_reviews }}
+              </div>
+
+              <div class="body1">
+                This is one of the most trusted reviews:
+              </div>
+
+              <div class="body2">
+                {{ trusted_review }}
+              </div>
+
+              <div class="body1">
+                These are the reasons it stood out:
+              </div>
+
+              <div class="body2">
+                {{ predicted_tag }}
+              </div>
+              
+              <div class="body2">
+                {{ basic_trust_tag }}
+              </div>
+
+          </div>
+        </div>
+
+        {% endif %}
+
+      <!-- On the landing page, before predictino gets a value, show this stuff. -->
+      <!-- These will be my hard-coded, clickable landing page example patterns. -->
+      {% else %}
+
+      <div class="resultshead">
+        <div class="resultsheadcontent">
+
+          Or try one of these examples:
+
+        </div>
+      </div>
+
+
+        <div class="box-container2">
+
+          <!-- Example pattern -->
+          <form action="/" method="POST">
+            <button name="product_url" id="customButton" type="submit" class="btn customButton" value='https://www.aliexpress.com/item/100pcs-bag-10mm-wholesale-silver-Plating-metal-Jump-Rings-Loop-Finding/1082836270.html?ws_ab_test=searchweb0_0,searchweb201602_3_10065_10068_10130_10547_10546_10059_10548_315_10545_10696_100031_5017615_531_10084_10083_10103_451_10618_452_10307_5017715,searchweb201603_55,ppcSwitch_3&algo_expid=89c3c219-2c61-4ec5-a633-13e752a31ec8-41&algo_pvid=89c3c219-2c61-4ec5-a633-13e752a31ec8&transAbTest=ae803_2&priceBeautifyAB=0'>
+
+              <div class="examplenamediv">
+                  4 6 8 10 mm <br> Metal Jump Rings
+              </div>
+
+              <div class="exampleauthordiv">
+                  from Xinyao Official Store
+              </div>
+
+            <img src="https://ae01.alicdn.com/kf/HTB1oajWPXXXXXbfaXXXq6xXFXXXo/XINYAO-200pcs-bag-4-6-8-10-mm-Metal-Jump-Rings-Silver-Gold-Bronze-Color-Split.jpg_640x640.jpg" alt="pic" />
+
+            </button>
+          </form>
+
+          <!-- Example pattern -->
+          <form action="/" method="POST">
+            <button name="product_url" id="customButton" type="submit" class="btn customButton" value="https://www.aliexpress.com/item/Free-shipping-30PCS-LOT-pu-mini-tulip-flower-real-touch-wedding-flower-artificial-flower-silk-flower/1116660691.html?ws_ab_test=searchweb0_0,searchweb201602_1_10065_10068_10130_5017611_10547_10546_10059_10548_315_10545_10696_100031_531_10084_10083_10103_451_10618_452_10307_5017711,searchweb201603_45,ppcSwitch_2&algo_expid=7199334f-ad94-4498-8978-f77b38a5e461-19&algo_pvid=7199334f-ad94-4498-8978-f77b38a5e461&transAbTest=ae803_1&priceBeautifyAB=0">
+
+              <div class="examplenamediv">
+                  tulip flower <br> wedding flower bouque
+              </div>
+
+              <div class="exampleauthordiv">
+                  from Angela flower Official Store
+              </div>
+
+            <img src="https://ae01.alicdn.com/kf/HTB1YKLhKASWBuNjSszdq6zeSpXa2/Free-shipping-31PCS-LOT-pu-mini-tulip-flower-real-touch-wedding-flower-bouquet-artificial-silk-flowers.jpg_640x640.jpg" alt="pic" />
+
+            </button>
+          </form>
+
+          <!-- Example pattern -->
+          <form action="/" method="POST">
+            <button name="product_url" id="customButton" type="submit" class="btn customButton" value="https://www.aliexpress.com/item/Round-three-row-clear-crystal-Stainless-steel-ring-fashion-jewelry-Made-with-Genuine-CZ-Crystals-Full/1485070290.html?ws_ab_test=searchweb0_0,searchweb201602_1_10065_10068_10130_5017611_10547_10546_10059_10548_315_10545_10696_100031_531_10084_10083_10103_451_10618_452_10307_5017711,searchweb201603_45,ppcSwitch_2&algo_expid=c2ae0289-ddbe-48f0-9500-6ed0fe66fcf4-37&algo_pvid=c2ae0289-ddbe-48f0-9500-6ed0fe66fcf4&transAbTest=ae803_1&priceBeautifyAB=0">
+
+              <div class="examplenamediv">
+                  Stainless steel <br> Wedding rings
+              </div>
+
+              <div class="exampleauthordiv">
+                  from VQYSKO Official Store
+              </div>
+
+            <img src="https://ae01.alicdn.com/kf/HTB1m4mxADJYBeNjy1zeq6yhzVXaR/Full-Size-three-row-clear-crystal-Stainless-steel-Wedding-rings-fashion-jewelry-Made-with-Genuine-CZ.jpg_640x640.jpg" alt="pic" />
+
+            </button>
+          </form>
+
+        </div>
+
+        <div class="box-container2">
+
+          <!-- Example pattern -->
+          <form action="/" method="POST">
+            <button name="product_url" id="customButton" type="submit" class="btn customButton" value="https://www.aliexpress.com/item/Classic-Stick-Pendant-Necklace-Gold-Plated-Girl-Long-Link-Chain-Square-Copper-Necklaces-Jewelry-for-women/32803626063.html?ws_ab_test=searchweb0_0,searchweb201602_3_10065_10068_10130_10547_10546_10059_10548_315_10545_10696_100031_5017615_531_10084_10083_10103_451_10618_452_10307_5017715,searchweb201603_55,ppcSwitch_3&algo_expid=d92156c6-f024-4bb3-afa1-5805c035a6f9-23&algo_pvid=d92156c6-f024-4bb3-afa1-5805c035a6f9&transAbTest=ae803_2&priceBeautifyAB=0">
+
+              <div class="examplenamediv">
+                Long Link Chain <br> Square Copper Necklaces
+              </div>
+
+              <div class="exampleauthordiv">
+                  from HMIXN outlet Store
+              </div>
+
+            <img src="https://ae01.alicdn.com/kf/HTB13I_1QpXXXXa8XVXXq6xXFXXX2/Simple-Classic-fashion-Stick-Pendant-Necklace-Hollow-Girl-Long-Link-Chain-Square-Copper-Necklaces-long-Strip.jpg_640x640.jpg" alt="pic" />
+
+            </button>
+          </form>
+
+            <!-- Example pattern 2 -->
+            <!-- <form action="/" method="POST">
+              <button name="product url" id="customButton" type="submit" class="btn customButton" value="https://www.ravelry.com/patterns/library/effie-fair-isle-pullover">
+
+                <div class="examplenamediv">
+                  Effie Fair Isle <br> Pullover
+                </div>
+
+                <div class="exampleauthordiv">
+                    by Lucinda Guy
+                </div>
+
+              <img src="https://images4-b.ravelrycache.com/uploads/inhyung/26948141/Effie01_small.jpg" alt="pic" />
+
+              </button>
+            </form> -->
+
+
+              <!-- Example pattern -->
+              <form action="/" method="POST">
+                <button name="product_url" id="customButton" type="submit" class="btn customButton" value="https://www.aliexpress.com/item/Newest-Arrivals-Multipurpose-Window-Door-Keyboard-Cleaning-Brush-Cleaner-Dustpan-2-In-1-Tool-NEW-Color/32840301637.html?ws_ab_test=searchweb0_0,searchweb201602_4_10065_10068_10130_10547_10546_10059_10884_10548_315_10545_10887_10696_100031_531_10084_10083_10103_451_10618_452_10307,searchweb201603_54,ppcSwitch_5&algo_expid=bc821ff7-d9d4-47c3-8285-22877b125992-5&algo_pvid=bc821ff7-d9d4-47c3-8285-22877b125992&priceBeautifyAB=0">
+
+                  <div class="examplenamediv">
+                    Brush Cleaner Dustpan <br> 2 In 1 Tool
+                  </div>
+
+                  <div class="exampleauthordiv">
+                      from Please Answer 1988 Store
+                  </div>
+
+                <img src="https://ae01.alicdn.com/kf/HTB1VanEdgDD8KJjy0Fdq6AjvXXaN/Newest-Arrivals-Multipurpose-Window-Door-Keyboard-Cleaning-Brush-Cleaner-Dustpan-2-In-1-Tool-NEW-Color.jpg_640x640.jpg" alt="pic" />
+
+                </button>
+              </form>
+
+              <!-- Example pattern -->
+              <form action="/" method="POST">
+                <button name="product_url" id="customButton" type="submit" class="btn customButton" value="https://www.aliexpress.com/item/Shuliancable-High-Speed-HDMI-Cable-with-Ethernet-Supports-1080p-3D-and-Audio-Return-0-3m-1m/32840545764.html?ws_ab_test=searchweb0_0,searchweb201602_3_5017015_10065_10068_10130_10547_10546_10059_10548_5016815_10545_10696_100031_10084_10083_5017115_10103_451_10618_452_5016915_10307,searchweb201603_2,ppcSwitch_5&algo_expid=a01e7eb7-4a83-4d81-a59f-16536173f6fa-12&algo_pvid=a01e7eb7-4a83-4d81-a59f-16536173f6fa&priceBeautifyAB=0">
+
+                  <div class="examplenamediv">
+                    High Speed HDMI Cable
+                  </div>
+
+                  <div class="exampleauthordiv">
+                    from Shuliancable Store
+                  </div>
+
+                <img src="https://ae01.alicdn.com/kf/HTB1k5T_dv6H8KJjSspmq6z2WXXab/Shuliancable-High-Speed-HDMI-Cable-with-Ethernet-Supports-1080p-3D-and-Audio-Return-0-3m-1m.jpg_640x640.jpg" alt="pic" />
+
+                </button>
+              </form>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+      {% endif %}
+
+
+    </div>
+</body>
+
+</html>

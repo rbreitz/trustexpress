@@ -1,0 +1,139 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+<style>
+
+    body{
+        /* color: #FFF; */
+        /* Font color */
+        color: black;
+        font-family: sans-serif;
+        font-size: 20px;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 20px;
+    }
+
+    .head{
+        flex-basis: 100%;
+        padding: 20px;
+        /* background: green; */
+        background: white;
+        margin: 10px;
+    }
+
+    .box-container{
+      width: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .box{
+        height:500px;
+        /* background-color: blue; */
+        background-color: white;
+        padding: 20px;
+        margin: 5px 10px 10px 10px;
+        flex-wrap: nowrap;
+    }
+
+    .one{
+      /*  width must add up to 100% with box two width */
+        width: 30%;
+    }
+
+    .two{
+      /*  width must add up to 100% with box one width */
+        width: 70%;
+    }
+
+    .url-label{
+      margin-bottom: 10px;
+    }
+
+    .submit-button{
+      margin-top: 15px;
+      font-size:30px;
+      width: 4em;  height: 4em;
+    }
+
+    input{
+      flex: 1;
+      padding: 5px;
+      font-size: 15px;
+      /* min-width: 95%; */
+      /* min-width: 50%; */
+      /* max-width: 100%; */
+      min-width: 50%;
+      /* max-width: 50%; */
+      margin-right:10px;
+    }
+
+
+</style>
+
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="head">
+
+          <h2>KnitPicker</h2>
+
+          <br>
+
+          <form action="/" method="POST">
+                <div class="url-label">Ravelry Pattern URL</div>
+                <input type="text" name="pattern url" value="https://www.ravelry.com/patterns/library/mysteries-she-wrote">
+                <input class="submit-button" type="submit" value="Send">
+          </form>
+
+        </div>
+
+
+        <div class="box-container">
+          <div class="box one">
+
+          {% if prediction %}
+            <p> </p>
+            <p> </p>
+            <p>
+              {{ pattern_name }}
+              <br>
+              by {{ pattern_author }}
+            </p>
+            <img src={{ pattern_photo_url }} alt="pic" />
+          {% endif %}
+          </div>
+
+          <div class="box two">
+
+            {% if prediction %}
+
+              <!-- <p> {{ pattern_name }} by {{ pattern_author }} <p>
+              <img src={{ pattern_photo_url }} alt="pic" /> -->
+
+              <p> Difficulty Prediction: {{ prediction }} out of 10 </p>
+
+              <p> These attributes predicted difficulty:
+                {{ ', '.join(difficult_features) }}
+              </p>
+
+              <p> These attributes predicted easiness:
+                {{ ', '.join(easy_features) }}
+              </p>
+
+            {% endif %}
+
+          </div>
+        </div>
+    </div>
+</body>
+
+</html>

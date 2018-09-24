@@ -1,0 +1,63 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+<style>
+
+    body{
+        color: #FFF;
+        font-family: sans-serif;
+        font-size: 20px;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 20px;
+      justify-content: space-around;
+    }
+
+    .head{
+        flex-basis: 100%;
+        padding: 20px;
+        background: green;
+        margin: 10px;
+    }
+
+    .box{
+        height:250px;
+        background-color: blue;
+        padding: 20px;
+        margin: 5px 10px 10px 10px;
+    }
+
+    .one{
+        flex-grow: 3;
+    }
+
+    .two{
+        flex-grow: 9;
+    }
+
+    @media (max-width: 767px) {
+        .flex-container {
+            flex-direction: column;
+        }
+    }
+
+
+</style>
+
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="head">This is the header and search bar. Hi, Jamie!</div>
+        <div class="box one">Column 1</div>
+        <div class="box two">Column 2</div>
+    </div>
+</body>
+
+</html>
