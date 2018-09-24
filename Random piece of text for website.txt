@@ -1,0 +1,9 @@
+Name Servers:
+
+ns-778.awsdns-33.net. 
+ns-108.awsdns-13.com. 
+ns-1833.awsdns-37.co.uk. 
+ns-1500.awsdns-59.org.
+
+Elastic IP:
+18.224.103.208

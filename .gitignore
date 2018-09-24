@@ -1,0 +1,9 @@
+credentials.json
+TrustExpressSite.pem
+scraped_Reviews
+scraped_Products
+Pickled Piles of Links
+Processed_Reviews
+geckodriver.log
+.ipynb_checkpoints
+.DS_Store
