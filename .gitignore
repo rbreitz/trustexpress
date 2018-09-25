@@ -7,3 +7,5 @@ Processed_Reviews
 geckodriver.log
 .ipynb_checkpoints
 .DS_Store
+flaskapp/flaskexample
+flaskapp/TrustExpressSite/data/AliExpressSecret.txt
