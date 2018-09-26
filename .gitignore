@@ -9,3 +9,4 @@ geckodriver.log
 .DS_Store
 flaskapp/flaskexample
 flaskapp/TrustExpressSite/data/AliExpressSecret.txt
+Amazon_Reviews

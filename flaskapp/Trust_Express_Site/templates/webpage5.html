@@ -126,7 +126,7 @@
     }
 
     .box-container2{
-      width: 100%;
+      width: 150%;
       display: flex;
       flex-wrap: nowrap;
       flex-basis: 100%;
@@ -266,7 +266,7 @@
     .body3{
       margin-top: 0px;
       font-weight: 400;
-      font-size: 22px;
+      font-size: 20px;
     }
 
 
@@ -500,108 +500,52 @@
                 <li></li>
               {% endif %}
 
-              {% if main_rating|int > 5 %}
-                <li class="filled"></li>
-              {% else %}
-                <li></li>
-              {% endif %}
-
-              {% if main_rating|int > 6 %}
-                <li class="filled"></li>
-              {% else %}
-                <li></li>
-              {% endif %}
-
-              {% if main_rating|int > 7 %}
-                <li class="filled"></li>
-              {% else %}
-                <li></li>
-              {% endif %}
-
-              {% if main_rating|int > 8 %}
-                <li class="filled"></li>
-              {% else %}
-                <li></li>
-              {% endif %}
-
-              {% if main_rating|int > 9 %}
-                <li class="filled"></li>
-              {% else %}
-                <li></li>
-              {% endif %}
-
             </ul>
 
             </div>
             <br>
 
               <div class="body3">
-                Current Rating: {{ main_rating }}/10
+                Current Rating: {{ main_rating }}/5
               </div>
               
               <div class="body3">
                 Number of reviews: {{ number_reviews }}
               </div>
               
+             <div class="body3">
+                Number of English reviews: {{ english_reviews }}
+              </div>
+              
               <div class="body1">
 
             <ul class="rating bar_rating">
 
-              {% if trusted_rating|int > 0 %}
+              {% if helpful_rating|int > 0 %}
                 <li class="filled"></li>
               {% else %}
                 <li></li>
               {% endif %}
 
-              {% if trusted_rating|int > 1 %}
+              {% if helpful_rating|int > 1 %}
                 <li class="filled"></li>
               {% else %}
                 <li></li>
               {% endif %}
 
-              {% if trusted_rating|int > 2 %}
+              {% if helpful_rating|int > 2 %}
                 <li class="filled"></li>
               {% else %}
                 <li></li>
               {% endif %}
 
-              {% if trusted_rating|int > 3 %}
+              {% if helpful_rating|int > 3 %}
                 <li class="filled"></li>
               {% else %}
                 <li></li>
               {% endif %}
 
-              {% if trusted_rating|int > 4 %}
-                <li class="filled"></li>
-              {% else %}
-                <li></li>
-              {% endif %}
-
-              {% if trusted_rating|int > 5 %}
-                <li class="filled"></li>
-              {% else %}
-                <li></li>
-              {% endif %}
-
-              {% if trusted_rating|int > 6 %}
-                <li class="filled"></li>
-              {% else %}
-                <li></li>
-              {% endif %}
-
-              {% if trusted_rating|int > 7 %}
-                <li class="filled"></li>
-              {% else %}
-                <li></li>
-              {% endif %}
-
-              {% if trusted_rating|int > 8 %}
-                <li class="filled"></li>
-              {% else %}
-                <li></li>
-              {% endif %}
-
-              {% if trusted_rating|int > 9 %}
+              {% if helpful_rating|int > 4 %}
                 <li class="filled"></li>
               {% else %}
                 <li></li>
@@ -613,31 +557,61 @@
             <br>
               
               <div class="body3">
-                Trusted Review Rating: {{ trusted_rating }}/10
+                Helpful Review Rating: {{ helpful_rating }}/5
               </div>
               
               <div class="body3">
-                Number of trusted reviews: {{ trusted_reviews }}
+                Number of helpful reviews: {{ helpful_reviews }}
               </div>
 
               <div class="body1">
-                This is one of the most trusted reviews:
+                Here are two of the most helpful reviews:
               </div>
-
-              <div class="body2">
-                {{ trusted_review }}
+              
+              <br>
+              
+              <div class="body3">
+                Probability of Being Helpful: {{ helpful_score_1 }}
               </div>
-
-              <div class="body1">
-                These are the reasons it stood out:
-              </div>
-
-              <div class="body2">
-                {{ predicted_tag }}
+              
+              <div class="body3">
+                Review: {{ helpful_eval_1 }}/5
               </div>
               
               <div class="body2">
-                {{ basic_trust_tag }}
+                {{ helpful_review_1 }}
+              </div>
+              
+              <br>
+              
+              <div class="body3">
+                Probability of Being Helpful: {{ helpful_score_2 }}
+              </div>
+              
+              <div class="body3">
+                Review: {{ helpful_eval_2 }}/5
+              </div>
+              
+              <div class="body2">
+                {{ helpful_review_2 }}
+              </div>
+
+              <div class="body1">
+                Here is the most helpful negative review:
+              </div>
+              
+              <br>
+              
+              <div class="body3">
+                Probability of Being Helpful: {{ negative_score_1 }}
+              </div>
+              
+              <div class="body3">
+                Review: {{ negative_eval_1 }}/5
+              </div>
+              
+              <div class="body2">
+                {{ negative_review_1 }}
               </div>
 
           </div>
@@ -696,17 +670,17 @@
 
           <!-- Example pattern -->
           <form action="/" method="POST">
-            <button name="product_url" id="customButton" type="submit" class="btn customButton" value="https://www.aliexpress.com/item/Round-three-row-clear-crystal-Stainless-steel-ring-fashion-jewelry-Made-with-Genuine-CZ-Crystals-Full/1485070290.html?ws_ab_test=searchweb0_0,searchweb201602_1_10065_10068_10130_5017611_10547_10546_10059_10548_315_10545_10696_100031_531_10084_10083_10103_451_10618_452_10307_5017711,searchweb201603_45,ppcSwitch_2&algo_expid=c2ae0289-ddbe-48f0-9500-6ed0fe66fcf4-37&algo_pvid=c2ae0289-ddbe-48f0-9500-6ed0fe66fcf4&transAbTest=ae803_1&priceBeautifyAB=0">
+            <button name="product_url" id="customButton" type="submit" class="btn customButton" value="https://www.aliexpress.com/item/Bamos-Female-Square-Ring-Set-Luxury-18KT-Rose-Gold-Filled-Ring-Vintage-Wedding-Band-Promise-Engagement/32892818354.html?ws_ab_test=searchweb0_0,searchweb201602_1_10065_10068_10130_5017611_10547_10546_10059_10548_315_10545_10696_100031_531_10084_10083_10103_451_10618_452_10307_5017711,searchweb201603_45,ppcSwitch_2&algo_expid=c2ae0289-ddbe-48f0-9500-6ed0fe66fcf4-24&algo_pvid=c2ae0289-ddbe-48f0-9500-6ed0fe66fcf4&transAbTest=ae803_1&priceBeautifyAB=0">
 
               <div class="examplenamediv">
-                  Stainless steel <br> Wedding rings
+                  Rose Gold Vintage Wedding Band
               </div>
 
               <div class="exampleauthordiv">
-                  from VQYSKO <br> Official Store
+                  from Bamos <br> Official Store
               </div>
 
-            <img src="https://ae01.alicdn.com/kf/HTB1m4mxADJYBeNjy1zeq6yhzVXaR/Full-Size-three-row-clear-crystal-Stainless-steel-Wedding-rings-fashion-jewelry-Made-with-Genuine-CZ.jpg_640x640.jpg" alt="pic" />
+            <img src="https://ae01.alicdn.com/kf/HTB1Bu2huhuTBuNkHFNRq6A9qpXan/Bamos-Female-Square-Ring-Set-Luxury-18KT-Rose-Gold-Filled-Ring-Vintage-Wedding-Band-Promise-Engagement.jpg_640x640.jpg" alt="pic" />
 
             </button>
           </form>
@@ -769,17 +743,17 @@
 
               <!-- Example pattern -->
               <form action="/" method="POST">
-                <button name="product_url" id="customButton" type="submit" class="btn customButton" value="https://www.aliexpress.com/item/8CM-13-Colors-Fluffy-Rabbit-Fur-Ball-Key-Chain-Cute-Cream-Black-Pompom-Artificial-Rabbit-Fur/32848391121.html?ws_ab_test=searchweb0_0,searchweb201602_3_10065_10068_10130_10547_10546_10059_10548_315_10545_10696_100031_5017615_531_10084_10083_10103_451_10618_452_10307_5017715,searchweb201603_55,ppcSwitch_3&algo_expid=ecf4226a-eccc-4a69-89cb-b8f54cf55323-6&algo_pvid=ecf4226a-eccc-4a69-89cb-b8f54cf55323&transAbTest=ae803_2&priceBeautifyAB=0">
+                <button name="product_url" id="customButton" type="submit" class="btn customButton" value="https://www.aliexpress.com/item/Bluedio-T5-Active-Noise-Cancelling-Wireless-Bluetooth-Headphones-Portable-Headset-with-microphone-for-phones-and-music/32857159419.html?ws_ab_test=searchweb0_0,searchweb201602_3_5017015_10065_10068_10130_10547_10546_10059_10548_5016815_10545_10696_100031_10084_10083_5017115_10103_451_10618_452_5016915_10307,searchweb201603_2,ppcSwitch_5&algo_expid=36bead88-4ae1-4f39-bc30-b841b43698fe-9&algo_pvid=36bead88-4ae1-4f39-bc30-b841b43698fe&priceBeautifyAB=0">
 
                   <div class="examplenamediv">
-                    Rabbit Fur Ball Key Chain
+                    Noise Cancelling Bluetooth Headphones
                   </div>
 
                   <div class="exampleauthordiv">
-                    from Tassel & Accessories <br> Store
+                    from Bluedio official store
                   </div>
 
-                <img src="https://ae01.alicdn.com/kf/HTB1BDIxjMnH8KJjSspcq6z3QFXaO/8CM-13-Colors-Fluffy-Rabbit-Fur-Ball-Key-Chain-Cute-Cream-Black-Pompom-Artificial-Rabbit-Fur.jpg_640x640.jpg" alt="pic" />
+                <img src="https://ae01.alicdn.com/kf/HTB178H0uYwrBKNjSZPcq6xpapXaL/Bluedio-T5-Active-Noise-Cancelling-Wireless-Bluetooth-Headphones-Portable-Headset-with-microphone-for-phones-and-music.jpg_640x640.jpg" alt="pic" />
 
                 </button>
               </form>

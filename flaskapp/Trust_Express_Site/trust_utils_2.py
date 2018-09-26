@@ -19,39 +19,53 @@ def get_product_info(product_url):
 
 def get_product_reviews(product_info):
     product_id = product_info.iloc[0]['product_id']
-    review_df = pd.read_csv('/Users/rebeccareitz/Desktop/Insight/AliExpress_Project/flaskapp/Trust_Express_Site/data/df_with_reviews_and_trust_and_all.csv', index_col=False, low_memory=False)
+    review_df = pd.read_csv('/Users/rebeccareitz/Desktop/Insight/AliExpress_Project/flaskapp/Trust_Express_Site/data/Ali_Express_English_Reviews_with_Amazon_Helpfulness.csv', index_col=False, low_memory=False)
     product_reviews = review_df.loc[pd.to_numeric(review_df['product_id'], errors = 'coerce')==product_id]
     return product_reviews
 
 def rate_my_product(product_reviews):
     number_reviews = product_reviews['buyerid'].count()
-    current_rating = pd.to_numeric(product_reviews['buyereval']).mean()/10
-    trusted_only = product_reviews.loc[product_reviews['final_trust']==1]
-    number_trusted = trusted_only['buyerid'].count()
-    trusted_only_rating = pd.to_numeric(trusted_only['buyereval']).mean()/10
-    middling = product_reviews.loc[product_reviews['final_trust']!=0]
-    number_middling = middling['buyerid'].count()
-    middling_rating = pd.to_numeric(middling['buyereval']).mean()/10
+    helpful_only = product_reviews.loc[product_reviews['help_prob']>.5]
+    number_helpful= helpful_only['buyerid'].count()
+    helpful_only_rating = pd.to_numeric(helpful_only['buyereval']).mean()/20
     product_ratings = {
-            'number_reviews':number_reviews,
-            'current_rating':current_rating,
-            'number_trusted':number_trusted,
-            'trusted_only_rating':trusted_only_rating,
-            'not_untrustworthy':number_middling,
-            'not_untrustworthy_rating':middling_rating
+            'number_english':number_reviews,
+            'number_helpful':number_helpful,
+            'helpful_only_rating':helpful_only_rating,
             }
     return product_ratings
 
 def get_top_reviews(product_reviews):
-    trusted_only = product_reviews.loc[product_reviews['predicted_trust']==True]
-    if trusted_only.empty:
-        best_reviews = product_reviews.loc[product_reviews['final_trust']==0.5]
+    helpful_sorted = product_reviews.sort_values(by='help_prob',ascending=False)
+    helpful_sorted['buyereval']=pd.to_numeric(helpful_sorted['buyereval'], errors='coerce')
+    top_reviews_list = []
+    top_review_1 = {
+            'buyerfeedback' : helpful_sorted.iloc[0]['buyerfeedback'],
+            'help_prob':helpful_sorted.iloc[0]['help_prob'],
+            'buyereval':helpful_sorted.iloc[0]['buyereval']
+            }
+    top_reviews_list.append(top_review_1)
+    top_review_2 = {
+            'buyerfeedback' : helpful_sorted.iloc[1]['buyerfeedback'],
+            'help_prob':helpful_sorted.iloc[1]['help_prob'],
+            'buyereval':helpful_sorted.iloc[1]['buyereval']
+            }
+    top_reviews_list.append(top_review_2)
+    
+    if helpful_sorted.buyereval.min() < 60:
+        negative_reviews = helpful_sorted.loc[helpful_sorted['buyereval']<60]
     else:
-        best_reviews = trusted_only
-    if best_reviews.shape[0]>3:
-        top_reviews = best_reviews.sample(n=3)
-    else:
-        top_reviews = best_reviews
+        negative_reviews = helpful_sorted.loc[helpful_sorted['buyereval']==helpful_sorted.buyereval.min()]
+    
+    negative_review_1 = {
+            'buyerfeedback' : negative_reviews.iloc[0]['buyerfeedback'],
+            'help_prob':negative_reviews.iloc[0]['help_prob'],
+            'buyereval':negative_reviews.iloc[0]['buyereval']
+            }
+    top_reviews_list.append(negative_review_1)
+    
+    top_reviews = pd.DataFrame(top_reviews_list)
+    
     return top_reviews
 
 if __name__ == '__main__':
@@ -63,5 +77,6 @@ if __name__ == '__main__':
     print(product_reviews.iloc[0]['buyerid'])
     product_ratings=rate_my_product(product_reviews)
     print(product_ratings)
-    
+    top_reviews = get_top_reviews(product_reviews)
+    print(top_reviews.iloc[2]['buyerfeedback'])
     

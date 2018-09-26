@@ -38,14 +38,19 @@ def get_difficulty_prediction():
         
         #Find product ratings based on reviews
         product_ratings = rate_my_product(product_reviews)
-        main_rating=round(product_ratings['current_rating'],2)
         #Note: next week you'll have to actually
 
         # Get some great reviews
         top_reviews = get_top_reviews(product_reviews)
-        trusted_review = top_reviews.iloc[0]['buyerfeedback']
-        predicted_tag = top_reviews.iloc[0]['predicted_tag']
-        basic_trust_tag = top_reviews.iloc[0]['basic_trust_tag']
+        helpful_review_1 = top_reviews.iloc[0]['buyerfeedback']
+        helpful_score_1 = top_reviews.iloc[0]['help_prob']
+        helpful_eval_1 = top_reviews.iloc[0]['buyereval']/20
+        helpful_review_2 = top_reviews.iloc[1]['buyerfeedback']
+        helpful_score_2 = top_reviews.iloc[1]['help_prob']
+        helpful_eval_2 = top_reviews.iloc[1]['buyereval']/20
+        negative_review_1 = top_reviews.iloc[2]['buyerfeedback']
+        negative_score_1 = top_reviews.iloc[2]['help_prob']
+        negative_eval_1 = top_reviews.iloc[2]['buyereval']/20
         #difficult_features = top_feature_dict['difficult_features']
         #easy_features = top_feature_dict['easy_features']
         #Find some features from the reviews and figure out 
@@ -55,25 +60,32 @@ def get_difficulty_prediction():
         store_name = product_info.iloc[0]['store_name']
         product_name = product_info.iloc[0]['title']
         price = product_info.iloc[0]['price']
+        main_rating = product_info.iloc[0]['stars']
+        number_reviews = product_info.iloc[0]['votes']
         #need to update all of these - B
         try:
             product_photo_url = product_info.iloc[0]['primary_image_url']
         except:  # If something goes wrong with the photo, we can just display an empty photo.
             product_photo_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/240px-No_image_available.svg.png'
         return render_template("webpage5.html", 
-                               number_reviews = product_ratings['number_reviews'],
+                               number_reviews = number_reviews,
                                main_rating=main_rating,
-                               trusted_reviews = product_ratings['number_trusted'],
-                               trusted_rating = round(product_ratings['trusted_only_rating'],2),
-                               not_untrusted_reviews = product_ratings['not_untrustworthy'],
-                               not_untrusted_rating = product_ratings['not_untrustworthy_rating'],
+                               english_reviews = product_ratings['number_english'],
+                               helpful_reviews = product_ratings['number_helpful'],
+                               helpful_rating = round(product_ratings['helpful_only_rating'],2),
                                store_name=store_name,
                                product_name=product_name,
                                price = price,
                                product_photo_url=product_photo_url,
-                               trusted_review = trusted_review,
-                               predicted_tag = predicted_tag,
-                               basic_trust_tag = basic_trust_tag
+                               helpful_review_1 = helpful_review_1,
+                               helpful_score_1 = round(helpful_score_1,2),
+                               helpful_eval_1 = helpful_eval_1,
+                               helpful_review_2 = helpful_review_2,
+                               helpful_score_2 = round(helpful_score_2,2),
+                               helpful_eval_2 = helpful_eval_2,
+                               negative_review_1 = negative_review_1,
+                               negative_score_1 = round(negative_score_1,2),
+                               negative_eval_1 = negative_eval_1
                                )
 
     # Don't tell the programmers :'(
@@ -84,14 +96,23 @@ def get_difficulty_prediction():
         return render_template("webpage5.html",
                                number_reviews = None,
                                main_rating=main_rating,
-                               trusted_reviews = None,
-                               trusted_rating = None,
-                               not_untrusted_reviews = None,
-                               not_untrusted_rating = None,
+                               english_reviews = None,
+                               helpful_reviews = None,
+                               helpful_rating = None,
                                store_name=None,
                                product_name=None,
+                               price = None,
                                product_photo_url=None,
-                               top_reviews=None)
+                               helpful_review_1 = None,
+                               helpful_score_1 = None,
+                               helpful_eval_1 = None,
+                               helpful_review_2 = None,
+                               helpful_score_2 = None,
+                               helpful_eval_2 = None,
+                               negative_review_1 = None,
+                               negative_score_1 = None,
+                               negative_eval_1 = None
+                               )
 
 @app.errorhandler(404)
 def page_not_found(e):
