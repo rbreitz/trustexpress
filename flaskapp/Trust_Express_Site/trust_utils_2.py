@@ -15,10 +15,10 @@ from sklearn.externals import joblib
 def get_product_info(product_url):
     product_df = pd.read_csv('/Users/rebeccareitz/Desktop/Insight/AliExpress_Project/flaskapp/Trust_Express_Site/data/all_saved_product_info.csv', index_col=False, low_memory=False)
     product_info = product_df.loc[product_df['product_url']==product_url]
-    return product_info
+    return product_info.iloc[0]
 
 def get_product_reviews(product_info):
-    product_id = product_info.iloc[0]['product_id']
+    product_id = product_info['product_id']
     review_df = pd.read_csv('/Users/rebeccareitz/Desktop/Insight/AliExpress_Project/flaskapp/Trust_Express_Site/data/Ali_Express_English_Reviews_with_Amazon_Helpfulness.csv', index_col=False, low_memory=False)
     product_reviews = review_df.loc[pd.to_numeric(review_df['product_id'], errors = 'coerce')==product_id]
     return product_reviews

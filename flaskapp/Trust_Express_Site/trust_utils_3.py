@@ -35,7 +35,7 @@ def scrape_product_info(product_url):
     authenticity_token = tree.xpath("//input[@name='_csrf_token']/@value")
    
     #Load 
-    path = 'data/AliExpressSecret.txt'  # Path to the file that holds the keys
+    path = '/Users/rebeccareitz/Desktop/Insight/AliExpress_Project/flaskapp/Trust_Express_Site/data/AliExpressSecret.txt'  # Path to the file that holds the keys
     mode = 'r'  # read mode--I'll only need to read the username and password from the file
 
     keys = []  # The list where I'll store my username and password
@@ -46,9 +46,9 @@ def scrape_product_info(product_url):
     
     payload = {
             'loginID': keys[0].rstrip(),
-            'password': keys[1].rstrip(),
-            '_csrf_token':authenticity_token
+            'password': keys[1].rstrip()
             }
+    print(product_url)
     
     login_result = session_requests.post(
         login_url, 
@@ -59,6 +59,7 @@ def scrape_product_info(product_url):
     result = session_requests.get(
         product_url,
         headers = dict(referer = product_url))
+    print(result.ok)
     
     soup = BeautifulSoup(result.content, "html.parser")
     
