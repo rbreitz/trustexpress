@@ -10,3 +10,4 @@ geckodriver.log
 flaskapp/flaskexample
 flaskapp/TrustExpressSite/data/AliExpressSecret.txt
 Amazon_Reviews
+GoogleNews-vectors-negative300.bin.gz
