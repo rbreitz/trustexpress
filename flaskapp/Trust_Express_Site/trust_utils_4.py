@@ -19,35 +19,37 @@ import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
+import os
+
 
 def scrape_product_info(product_url):
     session_requests = requests.session()
-    login_url = "https://login.aliexpress.com/"
-    result = session_requests.get(login_url)
-    tree = html.fromstring(result.text)
-    authenticity_token = tree.xpath("//input[@name='_csrf_token']/@value")
+    #login_url = "https://login.aliexpress.com/"
+    #result = session_requests.get(login_url)
+    #tree = html.fromstring(result.text)
+    #authenticity_token = tree.xpath("//input[@name='_csrf_token']/@value")
    
     #Load 
-    path = 'data/AliExpressSecret.txt'  # Path to the file that holds the keys
-    mode = 'r'  # read mode--I'll only need to read the username and password from the file
+    #path = 'data/AliExpressSecret.txt'  # Path to the file that holds the keys
+    #mode = 'r'  # read mode--I'll only need to read the username and password from the file
 
-    keys = []  # The list where I'll store my username and password
-    with open(path, mode) as f:  # Open the file
-        for line in f:
-            keys.append(line)  # The first line is the username, and the second line is the password--add each of these
+    #keys = []  # The list where I'll store my username and password
+    #with open(path, mode) as f:  # Open the file
+    #    for line in f:
+    #        keys.append(line)  # The first line is the username, and the second line is the password--add each of these
             # lines to the keys list
     
-    payload = {
-            'loginID': keys[0].rstrip(),
-            'password': keys[1].rstrip()
-            }
-    print(product_url)
+    #payload = {
+    #        'loginID': keys[0].rstrip(),
+    #        'password': keys[1].rstrip()
+    #        }
+    #print(product_url)
     
-    login_result = session_requests.post(
-        login_url, 
-        data = payload, 
-        headers = dict(referer=login_url)
-        )
+    #login_result = session_requests.post(
+    #    login_url, 
+    #    data = payload, 
+    #    headers = dict(referer=login_url)
+    #    )
     
     result = session_requests.get(
         product_url,
@@ -135,7 +137,8 @@ def scrape_product_info(product_url):
     return row
 
 def get_product_info(product_url):
-    product_df = pd.read_csv('data/all_saved_product_info.csv', index_col=False, low_memory=False)
+    product_filename = os.path.join('data', 'all_saved_product_info.csv')
+    product_df = pd.read_csv(product_filename, index_col=False, low_memory=False)
     product_info = product_df.loc[product_df['product_url']==product_url]
     return product_info.iloc[0]
 
@@ -169,13 +172,12 @@ def standardize_text(df, text_field):
 def find_helpful(english_product_reviews):
     
     english_product_reviews = standardize_text(english_product_reviews, 'buyerfeedback')
-    
-    tfidf_vectorizer_pkl_filename = 'models/tfidf_vectorizer.pickle'
+    tfidf_vectorizer_pkl_filename = os.path.join('models', 'tfidf_vectorizer.pickle')
     tfidf_vectorizer_pkl = open(tfidf_vectorizer_pkl_filename, 'rb')
     tfidf_vectorizer = pickle.load(tfidf_vectorizer_pkl)
     X_tfidf = tfidf_vectorizer.transform(english_product_reviews['buyerfeedback'])
             
-    clf_tfidf_pkl_filename = 'models/clf_tfidf.pickle'
+    clf_tfidf_pkl_filename = os.path.join('models', 'clf_tfidf.pickle')
     clf_tfidf_pkl = open(clf_tfidf_pkl_filename, 'rb')
     clf_tfidf = pickle.load(clf_tfidf_pkl)
     y = clf_tfidf.predict_proba(X_tfidf)
@@ -244,7 +246,8 @@ def extract_product_reviews(product_id, max_page=100):
 
 def get_product_reviews(product_info):
     product_id = product_info['product_id']
-    review_df = pd.read_csv('data/smaller_pretrained_aliexpress_reviews.csv', index_col=False, low_memory=False)
+    reviews_filename = os.path.join('data', 'smaller_pretrained_aliexpress_reviews.csv')
+    review_df = pd.read_csv(reviews_filename, index_col=False, low_memory=False)
     product_reviews = review_df.loc[pd.to_numeric(review_df['product_id'], errors = 'coerce')==product_id]
     return product_reviews
 
