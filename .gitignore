@@ -11,3 +11,4 @@ flaskapp/flaskexample
 flaskapp/TrustExpressSite/data/AliExpressSecret.txt
 Amazon_Reviews
 GoogleNews-vectors-negative300.bin.gz
+amazon_reviews_clothes_cells_home_office_pets.csv

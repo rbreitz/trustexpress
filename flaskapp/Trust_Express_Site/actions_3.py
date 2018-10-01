@@ -8,7 +8,9 @@ from .trust_utils_3 import *
 @app.route('/')
 @app.route('/index')
 def pattern_input():
+    print("Hello, there. I should be running now.")
     return render_template("webpage5.html")
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -71,6 +73,7 @@ def get_difficulty_prediction():
                                product_name=product_name,
                                price = price,
                                product_photo_url=product_photo_url,
+                               product_url = product_url,
                                helpful_review_1 = helpful_review_1,
                                helpful_score_1 = round(helpful_score_1,2),
                                helpful_eval_1 = helpful_eval_1,
@@ -97,6 +100,7 @@ def get_difficulty_prediction():
                                product_name=None,
                                price = None,
                                product_photo_url=None,
+                               product_url = None,
                                helpful_review_1 = None,
                                helpful_score_1 = None,
                                helpful_eval_1 = None,

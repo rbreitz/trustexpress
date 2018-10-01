@@ -46,7 +46,7 @@
         /* background: #6E988F; */
         /* background-image: url("/RavelryDifficultyPredictor/img/knit-pattern-green2.jpg"); */
         /* background-image: src="/img/knit-pattern-green2.jpg"; */
-        background-image: url("/static/img/big_data_art_01.jpg");
+        background-image: url("/static/img/pineapple-banner_3.jpg");
         background-size: cover;
         /* background-image: url("/static/knit-pattern-green9.jpg"); */
         /* background-position: bottom; */
@@ -65,8 +65,8 @@
 
     .mytitle{
       font-size: 70px;
-      font-weight: 100;
-      color: white;
+      font-weight: 300;
+      color: #E50000;
     }
 
     .searchbox{
@@ -174,7 +174,7 @@
       margin-top: 15px;
       font-size:20px;
       width: 5em;  height: 5em;
-      background-color: #FF4955;
+      background-color: #AC656D;
       border: none;
       color: white;
       padding: 5px 5px;
@@ -247,7 +247,7 @@
     }
 
     .customButton:hover{
-      border: 1px solid #6E988F;
+      border: 1px solid #AC656D;
       cursor: -webkit-grab;
     }
 
@@ -299,7 +299,7 @@
 
     .bar_rating li.filled {
       /* background-color: green; */
-      background-color: #6E988F;
+      background-color: #CB8331;
       border-left-width: 0px;
       border-right-width: 0px;
       margin: 0px;
@@ -350,7 +350,7 @@
         text-decoration: none;
     }
     a:hover {
-        color: #6E988F;
+        color: #AC656D;
         background-color: transparent;
         text-decoration: none;
     }
@@ -457,7 +457,7 @@
           <div class="box two">
 
             <div class="patternnamediv">
-                {{ product_name }}
+                <a href = {{ product_url }} > {{ product_name }}</a>
             </div>
 
                 <!-- <br> -->
@@ -514,7 +514,7 @@
               </div>
               
               <div class="body3">
-                Number of reviews: {{ number_reviews }}
+                Number of reviews: {{ number_reviews|int }}
               </div>
               
              <div class="body3">
@@ -579,7 +579,7 @@
               </div>
               
               <div class="body3">
-                Review: {{ helpful_eval_1 }}/5
+                Rating: {{ helpful_eval_1|int }}/5
               </div>
               
               <div class="body2">
@@ -593,7 +593,7 @@
               </div>
               
               <div class="body3">
-                Review: {{ helpful_eval_2 }}/5
+                Rating: {{ helpful_eval_2|int }}/5
               </div>
               
               <div class="body2">
@@ -611,7 +611,7 @@
               </div>
               
               <div class="body3">
-                Review: {{ negative_eval_1 }}/5
+                Rating: {{ negative_eval_1|int }}/5
               </div>
               
               <div class="body2">
@@ -754,7 +754,7 @@
                   </div>
 
                   <div class="exampleauthordiv">
-                    from Bluedio <br> Official Store
+                    from Bluedio Official Store
                   </div>
 
                 <img src="https://ae01.alicdn.com/kf/HTB178H0uYwrBKNjSZPcq6xpapXaL/Bluedio-T5-Active-Noise-Cancelling-Wireless-Bluetooth-Headphones-Portable-Headset-with-microphone-for-phones-and-music.jpg_640x640.jpg" alt="pic" />

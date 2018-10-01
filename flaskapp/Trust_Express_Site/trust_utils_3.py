@@ -5,7 +5,6 @@ Created on Thu Sep 20 16:42:12 2018
 
 @author: rebeccareitz
 """
-import csv
 from lxml import html
 import requests
 import pandas as pd
@@ -15,10 +14,6 @@ from sklearn.externals import joblib
 import json
 from datetime import datetime
 from bs4 import BeautifulSoup
-
-#for gathering data
-import requests
-from lxml import html
 
 from langdetect import detect
 
@@ -251,7 +246,7 @@ def extract_product_reviews(product_id, max_page=100):
 
 def get_product_reviews(product_info):
     product_id = product_info['product_id']
-    review_df = pd.read_csv('/Users/rebeccareitz/Desktop/Insight/AliExpress_Project/flaskapp/Trust_Express_Site/data/Ali_Express_English_Reviews_with_Amazon_Helpfulness.csv', index_col=False, low_memory=False)
+    review_df = pd.read_csv('/Users/rebeccareitz/Desktop/Insight/AliExpress_Project/flaskapp/Trust_Express_Site/data/smaller_pretrained_aliexpress_reviews.csv', index_col=False, low_memory=False)
     product_reviews = review_df.loc[pd.to_numeric(review_df['product_id'], errors = 'coerce')==product_id]
     return product_reviews
 
@@ -310,10 +305,13 @@ if __name__ == '__main__':
     product_ratings=rate_my_product(product_reviews)
     print(product_ratings)
     
-    link_2 = 'https://www.aliexpress.com/store/product/2017-Women-Summer-Casual-Cotton-Linen-V-neck-short-sleeve-tops-shorts-two-piece-set-Female/2056007_32808779921.html?spm=2114.search0103.3.56.503d1b09JWn3Kc&ws_ab_test=searchweb0_0,searchweb201602_5_10065_10068_10130_10547_10546_10059_10884_10548_315_10545_10887_10696_100031_10084_531_10083_10103_10618_10307_449,searchweb201603_60,ppcSwitch_7&algo_expid=69625d3c-df51-43ba-8dbf-232180987a7d-7&algo_pvid=69625d3c-df51-43ba-8dbf-232180987a7d&priceBeautifyAB=0'
+    link_2 = 'https://www.aliexpress.com/item/2017-Summer-Long-Dress-Floral-Print-Boho-Beach-Dress-Tunic-Maxi-Dress-Party-Women-Dress-Sundress/32814609855.html?spm=2114.search0103.3.61.7be14094OnfJpZ&ws_ab_test=searchweb0_0,searchweb201602_5_10065_10068_10130_10547_10546_10059_10884_10548_315_10545_10887_10696_100031_10084_531_10083_10103_10618_10307_449,searchweb201603_60,ppcSwitch_0&algo_expid=9e408205-01a2-460c-9e47-335612145403-7&algo_pvid=9e408205-01a2-460c-9e47-335612145403&transAbTest=ae803_4&priceBeautifyAB=0'
     product_info = scrape_product_info(link_2)
     print(product_info['product_id'])
     product_reviews = extract_product_reviews(product_info['product_id'])
     print(product_reviews.iloc[0]['buyerid'])
-    
+    product_ratings=rate_my_product(product_reviews)
+    print(product_ratings)
+    top_reviews =get_top_reviews(product_reviews)
+    print(top_reviews)
     
