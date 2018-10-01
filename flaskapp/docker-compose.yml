@@ -12,4 +12,4 @@ services:
     
     
     command: >
-      bash -c "pip install -r req-1.txt && gunicorn Trust_Express_Site:app -b 0.0.0.0:5000"
+      bash -c "pip install -r requirements.txt && gunicorn Trust_Express_Site:app -b 0.0.0.0:5000"
