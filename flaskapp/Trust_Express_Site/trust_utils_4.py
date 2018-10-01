@@ -137,7 +137,10 @@ def scrape_product_info(product_url):
     return row
 
 def get_product_info(product_url):
-    product_filename = os.path.join('data', 'all_saved_product_info.csv')
+    dirpath = os.getcwd()
+    product_filename = os.path.join(dirpath,'Trust_Express_Site','data', 'all_saved_product_info.csv')
+    print(os.listdir())
+    print(product_filename)
     product_df = pd.read_csv(product_filename, index_col=False, low_memory=False)
     product_info = product_df.loc[product_df['product_url']==product_url]
     return product_info.iloc[0]
@@ -172,12 +175,14 @@ def standardize_text(df, text_field):
 def find_helpful(english_product_reviews):
     
     english_product_reviews = standardize_text(english_product_reviews, 'buyerfeedback')
-    tfidf_vectorizer_pkl_filename = os.path.join('models', 'tfidf_vectorizer.pickle')
+    
+    dirpath = os.getcwd()
+    tfidf_vectorizer_pkl_filename = os.path.join(dirpath,'Trust_Express_Site','models', 'tfidf_vectorizer.pickle')
     tfidf_vectorizer_pkl = open(tfidf_vectorizer_pkl_filename, 'rb')
     tfidf_vectorizer = pickle.load(tfidf_vectorizer_pkl)
     X_tfidf = tfidf_vectorizer.transform(english_product_reviews['buyerfeedback'])
             
-    clf_tfidf_pkl_filename = os.path.join('models', 'clf_tfidf.pickle')
+    clf_tfidf_pkl_filename = os.path.join(dirpath,'Trust_Express_Site','models', 'clf_tfidf.pickle')
     clf_tfidf_pkl = open(clf_tfidf_pkl_filename, 'rb')
     clf_tfidf = pickle.load(clf_tfidf_pkl)
     y = clf_tfidf.predict_proba(X_tfidf)
@@ -241,12 +246,15 @@ def extract_product_reviews(product_id, max_page=100):
     product_reviews = pd.DataFrame(filtered_reviews)
     print(product_reviews.shape)
     english_product_reviews = find_english(product_reviews)
+    print(english_product_reviews.shape)
     english_product_reviews_with_prob = find_helpful(english_product_reviews)
+    print(english_product_reviews_with_prob.shape)
     return english_product_reviews_with_prob
 
 def get_product_reviews(product_info):
     product_id = product_info['product_id']
-    reviews_filename = os.path.join('data', 'smaller_pretrained_aliexpress_reviews.csv')
+    dirpath = os.getcwd()
+    reviews_filename = os.path.join(dirpath,'Trust_Express_Site','data', 'smaller_pretrained_aliexpress_reviews.csv')
     review_df = pd.read_csv(reviews_filename, index_col=False, low_memory=False)
     product_reviews = review_df.loc[pd.to_numeric(review_df['product_id'], errors = 'coerce')==product_id]
     return product_reviews
