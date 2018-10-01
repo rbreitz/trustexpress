@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  prediction:
+    image: python:3.6.6-slim
+    container_name: "tony-website"
+    volumes:
+      - ./:/root/app
+    ports:
+      - "5000:5000"
+    restart: always
+    working_dir: /root/app/
+    
+    
+    command: >
+      bash -c "pip install -r req-1.txt && gunicorn Trust_Express_Site:app -b 0.0.0.0:5000"
