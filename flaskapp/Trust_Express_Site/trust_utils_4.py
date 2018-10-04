@@ -277,13 +277,13 @@ def get_top_reviews(product_reviews):
     top_reviews_list = []
     top_review_1 = {
             'buyerfeedback' : helpful_sorted.iloc[0]['buyerfeedback'],
-            'help_prob':helpful_sorted.iloc[0]['help_prob'],
+            'help_prob':helpful_sorted.iloc[0]['help_prob']*100,
             'buyereval':helpful_sorted.iloc[0]['buyereval']
             }
     top_reviews_list.append(top_review_1)
     top_review_2 = {
             'buyerfeedback' : helpful_sorted.iloc[1]['buyerfeedback'],
-            'help_prob':helpful_sorted.iloc[1]['help_prob'],
+            'help_prob':helpful_sorted.iloc[1]['help_prob']*100,
             'buyereval':helpful_sorted.iloc[1]['buyereval']
             }
     top_reviews_list.append(top_review_2)
@@ -295,7 +295,7 @@ def get_top_reviews(product_reviews):
     
     negative_review_1 = {
             'buyerfeedback' : negative_reviews.iloc[0]['buyerfeedback'],
-            'help_prob':negative_reviews.iloc[0]['help_prob'],
+            'help_prob':negative_reviews.iloc[0]['help_prob']*100,
             'buyereval':negative_reviews.iloc[0]['buyereval']
             }
     top_reviews_list.append(negative_review_1)
