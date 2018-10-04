@@ -177,12 +177,12 @@ def find_helpful(english_product_reviews):
     english_product_reviews = standardize_text(english_product_reviews, 'buyerfeedback')
     
     dirpath = os.getcwd()
-    tfidf_vectorizer_pkl_filename = os.path.join(dirpath,'Trust_Express_Site','models', 'tfidf_vectorizer.pickle')
+    tfidf_vectorizer_pkl_filename = os.path.join(dirpath,'Trust_Express_Site','models', 'count_vectorizer.pickle')
     tfidf_vectorizer_pkl = open(tfidf_vectorizer_pkl_filename, 'rb')
     tfidf_vectorizer = pickle.load(tfidf_vectorizer_pkl)
     X_tfidf = tfidf_vectorizer.transform(english_product_reviews['buyerfeedback'])
             
-    clf_tfidf_pkl_filename = os.path.join(dirpath,'Trust_Express_Site','models', 'clf_tfidf.pickle')
+    clf_tfidf_pkl_filename = os.path.join(dirpath,'Trust_Express_Site','models', 'clf_SGD.pickle')
     clf_tfidf_pkl = open(clf_tfidf_pkl_filename, 'rb')
     clf_tfidf = pickle.load(clf_tfidf_pkl)
     y = clf_tfidf.predict_proba(X_tfidf)
