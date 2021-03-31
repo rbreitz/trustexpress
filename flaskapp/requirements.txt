@@ -20,6 +20,6 @@ six==1.11.0
 sklearn==0.0
 urllib3==1.23
 Werkzeug==0.14.1
-lxml==4.2.5
+lxml==4.6.3
 langdetect==1.0.7
 beautifulsoup4==4.6.3
